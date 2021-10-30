@@ -50,6 +50,10 @@ function Navi() {
                      <Dropdown.Header>Favorites</Dropdown.Header>
                      <Dropdown.Item as={Link} to="/candidate/favourites">Candidates</Dropdown.Item>
                      <Dropdown.Item as={Link} to="/jobAdverts/favourites">Job Advertisements</Dropdown.Item>
+                     <Dropdown.Divider />
+                     <Dropdown.Header>Auth</Dropdown.Header>
+                     <Dropdown.Item as={Link} to="/candidate/register">Register</Dropdown.Item>
+                     <Dropdown.Item as={Link} to="/jobAdverts/login">Sign In</Dropdown.Item>
                   </Dropdown.Menu>
                </Dropdown>
                <Menu.Item position='right'>

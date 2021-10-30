@@ -3,14 +3,16 @@ import { Button, Container, Grid } from 'semantic-ui-react'
 import { Route } from 'react-router-dom'
 import Categories from './Categories'
 
-import CandidateList from '../pages/CandidateList';
-import CandidateDetail from '../pages/CandidateDetail';
+
 import FavouriteCandidates from './FavouriteCandidates';
 import { Toaster } from 'react-hot-toast';
 import { GuardProvider, GuardedRoute } from 'react-router-guards';
 import JobAdvertList from '../pages/JobAdvertisement/JobAdvertList';
-import CandidateAdd from '../pages/Candidate/CandidateAdd';
+
 import FavoriteAdverts from './FavoriteAdverts';
+import CandidateList from '../pages/Candidate/CandidateList';
+import CandidateDetail from '../pages/Candidate/CandidateDetail';
+import CandidateRegister from '../pages/Candidate/CandidateRegister';
 
 function Dashboard() {
    return (
@@ -28,7 +30,7 @@ function Dashboard() {
                   <Route exact path="/candidate/favourites" component={FavouriteCandidates} />
                   <Route exact path="/jobAdverts/favourites" component={FavoriteAdverts} />
                   <Route exact path="/jobadverts" component={JobAdvertList} />
-                  <Route exact path="/candidateAdd" component={CandidateAdd} />
+                  <Route exact path="/candidate/register" component={CandidateRegister} />
                </Grid.Column>
             </Grid.Row>
          </Grid>

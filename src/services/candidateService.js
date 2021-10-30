@@ -8,7 +8,7 @@ export default class CandidateService {
    }
 
    add(candidate) {
-      return axios.post(this.baseUrl + "/ad", candidate);
+      return axios.post(this.baseUrl + "/add", candidate);
    }
 
    getById(id) {

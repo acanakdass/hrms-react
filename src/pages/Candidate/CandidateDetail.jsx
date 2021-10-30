@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 
-import CandidateService from '../services/candidateService'
+import CandidateService from '../../services/candidateService'
 import { Card, Container, Grid, Image } from 'semantic-ui-react';
-import Schools from '../components/Resume/Schools';
-import GeneralInfos from '../components/Resume/GeneralInfos';
-import Languages from '../components/Resume/Languages';
-import JobExperience from '../components/Resume/JobExperience';
-import Skills from '../components/Resume/Skills';
+import Schools from '../../components/Resume/Schools';
+import GeneralInfos from '../../components/Resume/GeneralInfos';
+import Languages from '../../components/Resume/Languages';
+import JobExperience from '../../components/Resume/JobExperience';
+import Skills from '../../components/Resume/Skills';
 
 function CandidateDetail() {
 

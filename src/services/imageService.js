@@ -9,6 +9,7 @@ export default class ImageService {
             "content-type": "multipart/form-data"
          }
       };
+      console.log(formData);
       return axios.post(this.baseUrl + "/upload", formData, config);
    }
 

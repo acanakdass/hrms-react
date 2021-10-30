@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Card } from 'semantic-ui-react'
+import CandidateCard from '../../components/Candidate/CandidateCard';
+import CandidateService from '../../services/candidateService';
 
-import CandidateService from '../services/candidateService'
-import CandidateCard from '../components/Candidate/CandidateCard';
+
 
 function CandidateList() {
 
@@ -20,9 +21,8 @@ function CandidateList() {
          <Card.Group centered >
             {
                candidates.map((candidate) => (
-                  <>
-                     <CandidateCard candidate={candidate} />
-                  </>
+                  <CandidateCard key={candidate.id} candidate={candidate} />
+
                ))
             }
          </Card.Group>

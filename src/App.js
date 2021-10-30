@@ -12,10 +12,11 @@ function App() {
       <Navi />
       <Container >
         <Route exact path="/auth/login" component={Login} />
-        <Dashboard />
+        <Route path="/" component={Dashboard} />
       </Container>
     </div>
   );
 }
 
 export default App;
+
