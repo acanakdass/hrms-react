@@ -20,6 +20,7 @@ function CandidateAddPhoto(props) {
          imageService.upload(formData).then(res => {
             toast.success(res.data.message);
             setIsLoading(false);
+            props.setstep('resume')
          });
       } else {
          toast("Bir sorun oluştu");

@@ -42,8 +42,6 @@ function CandidateAddInfos(props) {
             setIsLoading(false)
          }
       });
-
-
    }
 
    return (

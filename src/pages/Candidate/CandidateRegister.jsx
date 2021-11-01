@@ -11,6 +11,7 @@ import { Route, Switch } from 'react-router';
 import CandidateAddInfos from '../../components/Candidate/CandidateAddInfos';
 import CandidateRegisterStepper from '../../components/Candidate/CandidateRegisterStepper';
 import CandidateAddPhoto from '../../components/Candidate/CandidateAddPhoto';
+import CandidateAddResume from '../../components/Candidate/CandidateAddResume/CandidateAddResume';
 function CandidateRegister() {
    const [step, setStep] = useState('info');
    const [addedUserId, setAddedUserId] = useState(null)
@@ -20,15 +21,14 @@ function CandidateRegister() {
    }, [addedUserId])
 
    const renderStep = () => {
-      if (step === 'info') {
-         return (
-            <CandidateAddInfos setstep={setStep} setAddedUser={setAddedUserId} />
-         )
-      } else if (step === 'photo') {
-         return (
-            <CandidateAddPhoto userId={addedUserId} setstep={setStep} />
-         )
-      }
+      if (step === 'info')
+         return (<CandidateAddInfos setstep={setStep} setAddedUser={setAddedUserId} />)
+
+      if (step === 'photo')
+         return (<CandidateAddPhoto userId={addedUserId} setstep={setStep} />)
+
+      if (step === 'resume')
+         return (<CandidateAddResume userId={addedUserId} setstep={setStep} />)
    }
    return (
       <div style={{ margin: '5em 5em', padding: '2em', border: 'solid 1px' }}>

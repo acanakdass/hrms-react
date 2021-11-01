@@ -13,6 +13,7 @@ import FavoriteAdverts from './FavoriteAdverts';
 import CandidateList from '../pages/Candidate/CandidateList';
 import CandidateDetail from '../pages/Candidate/CandidateDetail';
 import CandidateRegister from '../pages/Candidate/CandidateRegister';
+import { FriendList } from './FriendsList';
 
 function Dashboard() {
    return (
@@ -30,6 +31,7 @@ function Dashboard() {
                   <Route exact path="/candidate/favourites" component={FavouriteCandidates} />
                   <Route exact path="/jobAdverts/favourites" component={FavoriteAdverts} />
                   <Route exact path="/jobadverts" component={JobAdvertList} />
+                  <Route exact path="/test" component={FriendList} />
                   <Route exact path="/candidate/register" component={CandidateRegister} />
                </Grid.Column>
             </Grid.Row>

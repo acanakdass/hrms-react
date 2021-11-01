@@ -7,6 +7,10 @@ export default class ResumeService {
       return axios.get(this.baseUrl + "/getAll");
    }
    add(resume) {
-      return axios.post(this.baseUrl + "/add", resume);
+      return axios.post(this.baseUrl + "/add", resume, {
+         headers: {
+            "Content-Type": "application/json"
+         }
+      })
    }
 }
