@@ -1,0 +1,38 @@
+{
+   "candidateId": 66,
+   "coverLetter": "asddasdsdsa",
+   "githubAddress": "asdasd",
+   "linkedinAddress": "asdds",
+   "jobExperiences": [
+      {
+         "company": "",
+         "position": "",
+         "quitDate": "",
+         "startDate": ""
+      }
+   ],
+   "languages": [
+      {
+         "languageName": "asd",
+         "level": 2
+      },
+      {
+         "languageName": "Almanca",
+         "level": 4
+      }
+   ],
+   "skills": [
+      {
+         "name": ""
+      }
+   ],
+   "schools": [
+      {
+         "department": "",
+         "finishedDate": "",
+         "graduateDate": "",
+         "schoolName": "",
+         "startedDate": ""
+      }
+   ]
+}
