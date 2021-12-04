@@ -1,38 +1,56 @@
 {
-   "candidateId": 66,
-   "coverLetter": "asddasdsdsa",
-   "githubAddress": "asdasd",
-   "linkedinAddress": "asdds",
+   "candidateId": 68,
+   "coverLetter": "During my previous role at River Tech, I provided support for a role-oriented parts management system that allowed the users to track parts, jobs, tasks, statistics and other job and employee data.",
+   "githubAddress": "alperakdas",
+   "linkedinAddress": "alperakdas",
    "jobExperiences": [
       {
-         "company": "",
-         "position": "",
-         "quitDate": "",
-         "startDate": ""
+         "company": "Microsoft",
+         "position": "Backend Developer",
+         "quitDate": "2019-05-02",
+         "startDate": "2018-07-05"
+      },
+      {
+         "company": "Trendyol GO",
+         "position": "Software Developer Intern",
+         "quitDate": "2018-06-20",
+         "startDate": "2016-20-20"
       }
    ],
    "languages": [
       {
-         "languageName": "asd",
-         "level": 2
+         "languageName": "İngilizce",
+         "level": 1
       },
       {
-         "languageName": "Almanca",
-         "level": 4
+         "languageName": "Türkçe",
+         "level": 3
       }
    ],
    "skills": [
       {
-         "name": ""
+         "name": "Postgre SQL"
+      },
+      {
+         "name": "Spring"
+      },
+      {
+         "name": "JAVA"
+      },
+      {
+         "name": "Javascript"
+      },
+      {
+         "name": "C#"
       }
    ],
    "schools": [
       {
-         "department": "",
+         "department": "Bilgisyar Mühendisliği",
          "finishedDate": "",
-         "graduateDate": "",
-         "schoolName": "",
-         "startedDate": ""
+         "graduateDate": "2019",
+         "schoolName": "Süleyman Demirel Üniversites",
+         "startedDate": "2015"
       }
    ]
 }

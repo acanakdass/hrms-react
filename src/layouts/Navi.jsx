@@ -29,7 +29,7 @@ function Navi() {
                <Menu.Item as={Link} to="/" name='home' />
                <Menu.Item as={Link} to="/candidate/favourites" name="Favourite Candidates" />
                <Menu.Item as={Link} to="/jobadverts" name="Job Advertisements" />
-               <Menu.Item as={Link} to="/candidateAdd" name="Add Candidate" />
+               <Menu.Item as={Link} to="/candidate/register" name="Add Candidate" />
                <Dropdown text='System Employee' pointing className='link item'>
                   <Dropdown.Menu>
                      <Dropdown.Header>Job Advertisements</Dropdown.Header>
@@ -54,6 +54,39 @@ function Navi() {
                      <Dropdown.Header>Auth</Dropdown.Header>
                      <Dropdown.Item as={Link} to="/candidate/register">Register</Dropdown.Item>
                      <Dropdown.Item as={Link} to="/jobAdverts/login">Sign In</Dropdown.Item>
+                  </Dropdown.Menu>
+               </Dropdown>
+               <Dropdown text='Admin' pointing className='link item'>
+                  <Dropdown.Menu>
+                     <Dropdown.Header>Candidates</Dropdown.Header>
+                     {/* <Dropdown.Item>
+                        <Dropdown text='Clothing'>
+                           <Dropdown.Menu>
+                              <Dropdown.Header>Mens</Dropdown.Header>
+                              <Dropdown.Item>Shirts</Dropdown.Item>
+                              <Dropdown.Divider />
+                              <Dropdown.Header>Womens</Dropdown.Header>
+                              <Dropdown.Item>Dresses</Dropdown.Item>
+                           </Dropdown.Menu>
+                           </Dropdown>
+                        </Dropdown.Item> */}
+                     <Dropdown.Item as={Link} to="/admin/candidates/list">Candidates List</Dropdown.Item>
+                     <Dropdown.Divider />
+                     <Dropdown.Header>Candidates</Dropdown.Header>
+                     <Dropdown.Item>
+                        <Dropdown text='Clothing'>
+                           <Dropdown.Menu>
+                              <Dropdown.Header>Mens</Dropdown.Header>
+                              <Dropdown.Item>Shirts</Dropdown.Item>
+                              <Dropdown.Divider />
+                              <Dropdown.Header>Womens</Dropdown.Header>
+                              <Dropdown.Item>Dresses</Dropdown.Item>
+                           </Dropdown.Menu>
+                        </Dropdown>
+                     </Dropdown.Item>
+                     <Dropdown.Item>Home Goods</Dropdown.Item>
+                     <Dropdown.Item>Bedroom</Dropdown.Item>
+
                   </Dropdown.Menu>
                </Dropdown>
                <Menu.Item position='right'>

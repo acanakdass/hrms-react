@@ -11,9 +11,6 @@ function Schools(props) {
       var date = new Date(dateString);
       return date.toLocaleDateString('tr-TR', options);
    }
-   useEffect(() => {
-      console.log(props.schools)
-   }, [])
    return (
       <div style={{ textAlign: 'start' }} >
          <div fluid style={{ padding: '1em' }}>

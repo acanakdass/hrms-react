@@ -31,10 +31,10 @@ function CandidateRegister() {
          return (<CandidateAddResume userId={addedUserId} setstep={setStep} />)
    }
    return (
-      <div style={{ margin: '5em 5em', padding: '2em', border: 'solid 1px' }}>
+      <div style={{ margin: '5em 5em', padding: '2em', border: 'solid lightgrey 1px' }}>
          <Header textAlign='center' as="h1">Register</Header>
          <Divider />
-         <CandidateRegisterStepper />
+         <CandidateRegisterStepper activeStep={step} />
          <div>
             {renderStep()}
          </div>

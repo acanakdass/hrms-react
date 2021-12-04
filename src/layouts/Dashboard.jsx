@@ -6,14 +6,13 @@ import Categories from './Categories'
 
 import FavouriteCandidates from './FavouriteCandidates';
 import { Toaster } from 'react-hot-toast';
-import { GuardProvider, GuardedRoute } from 'react-router-guards';
 import JobAdvertList from '../pages/JobAdvertisement/JobAdvertList';
 
 import FavoriteAdverts from './FavoriteAdverts';
 import CandidateList from '../pages/Candidate/CandidateList';
 import CandidateDetail from '../pages/Candidate/CandidateDetail';
 import CandidateRegister from '../pages/Candidate/CandidateRegister';
-import { FriendList } from './FriendsList';
+import AdminCandidatesList from '../components/Candidate/Admin/AdminCandidatesList';
 
 function Dashboard() {
    return (
@@ -31,8 +30,8 @@ function Dashboard() {
                   <Route exact path="/candidate/favourites" component={FavouriteCandidates} />
                   <Route exact path="/jobAdverts/favourites" component={FavoriteAdverts} />
                   <Route exact path="/jobadverts" component={JobAdvertList} />
-                  <Route exact path="/test" component={FriendList} />
                   <Route exact path="/candidate/register" component={CandidateRegister} />
+                  <Route exact path="/admin/candidates/list" component={AdminCandidatesList} />
                </Grid.Column>
             </Grid.Row>
          </Grid>

@@ -13,6 +13,7 @@ function CandidateAddInfos(props) {
 
 
    const [isLoading, setIsLoading] = useState(false);
+   const [password, setPassword] = useState('');
 
 
 
@@ -22,9 +23,10 @@ function CandidateAddInfos(props) {
       firstName: Yup.string().required("İsim alanı zorunludur"),
       lastName: Yup.string().required("Soyisim alanı zorunludur"),
       birthYear: Yup.number().required("Doğum Yılı alanı zorunludur"),
-      email: Yup.string().required("Email alanı zorunludur"),
+      email: Yup.string().email().required("Email alanı zorunludur"),
       identityNumber: Yup.string().required("Tc No Yılı alanı zorunludur"),
-      password: Yup.string().required("Şifre alanı zorunludur")
+      password: Yup.string().min(8).required("Şifre alanı zorunludur"),
+      passwordConfirm: Yup.string().min(8).required('Şifre Tekrar Alanı Zorunludur')
    });
 
    const handleSubmit = (values) => {
@@ -61,7 +63,10 @@ function CandidateAddInfos(props) {
                      <HrmsTextInput width="6" name="identityNumber" placeholder="Identity Number" />
                      <HrmsTextInput width="6" name="birthYear" placeholder="Birth Year" />
                   </Form.Group>
-                  <HrmsTextInput name="password" placeholder="Password" />
+                  <Form.Group widths='equal'>
+                     <HrmsTextInput name="password" placeholder="Password" />
+                     <HrmsTextInput name="passwordConfirm" placeholder="Confirm Password" />
+                  </Form.Group>
                   <Button fluid loading={isLoading} color="blue" type="submit">Sonraki</Button>
                </FormikForm>
             </Formik>

@@ -3,12 +3,17 @@ import axios from "axios";
 export default class CandidateService {
    baseUrl = "http://localhost:8080/api/candidates";
 
+
    getAll() {
       return axios.get(this.baseUrl + "/getAll");
    }
 
    add(candidate) {
       return axios.post(this.baseUrl + "/add", candidate);
+   }
+
+   delete(id) {
+      return axios.delete(this.baseUrl + "/delete?id=" + id);
    }
 
    getById(id) {
@@ -18,4 +23,5 @@ export default class CandidateService {
    getByIdentityNumber(identityNumber) {
       return axios.get(this.baseUrl + "/getByIdentityNumber?identityNumber=" + identityNumber);
    }
+
 }

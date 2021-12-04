@@ -7,7 +7,7 @@ import { height } from 'dom-helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAdvertToFavourites, removeAdvertFromFavourites } from '../../redux/store/actions/favouritesActions';
 import toast from 'react-hot-toast';
-
+import * as Mui from '@mui/material'
 
 function JobAdvertCard(props) {
 
@@ -128,6 +128,12 @@ function JobAdvertCard(props) {
                      </Button.Content>
                   </Button>
                </Button.Group>
+            </div>
+            <br />
+            <Mui.Divider variant='middle' />
+            <br />
+            <div>
+               <Mui.Button variant='contained' fullWidth size='large'>Başvuru Yap</Mui.Button>
             </div>
          </Card>
       </div>

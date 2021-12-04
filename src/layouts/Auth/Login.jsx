@@ -6,7 +6,7 @@ function Login() {
       <div>
          <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 350 }}>
-               <Image src="https://lh3.googleusercontent.com/proxy/X0SyzpqwGGdRMrBIxVWlSAlvY_quoRmGXmsK0sZ-gFI09Lh9-h2fYTzrZGBxcCj1LTxi_jQ098XHnAhPMMIGottqMAuPcVP4p47oFRzQLg" />
+               <Image src="https://lh3.googleusercontent.com/proxy/oURZbxst2BMj_MWgGOEf2wykHV-yg3fOG8vG9I7Rud2wvehG_s8hqpd9LYv35FdNG18EY2lzaDXjYfb_Zd0PdhKs57Gda58jy7DLWdSqlQ" />
                <Header as='h1' color='blue' textAlign='center'>
                   Log-in to your account
                </Header>

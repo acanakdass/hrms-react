@@ -11,6 +11,7 @@ function HrmsTextInput({ ...props }) {
       // </div >
       <FormField width={props.width?.toString()}
          error={meta.touched && !!meta.error}>
+         <label>{props.label?.toString()}</label>
          <input {...field} {...props} />
          {meta.touched && !!meta.error ? (
             <Label pointing basic color='red' content={meta.error}></Label>

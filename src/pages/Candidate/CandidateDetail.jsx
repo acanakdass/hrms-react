@@ -21,7 +21,7 @@ function CandidateDetail() {
       }, 2000)
    }, [])
    return (
-      <div>
+      <div style={{ margin: '2em' }}>
          <Card fluid style={{ padding: '5em 15em 5em 15em' }}>
             <Grid>
                <Grid.Row>
@@ -36,7 +36,6 @@ function CandidateDetail() {
                   <Container text textAlign='justified'>
                      <span style={{ textAlign: 'center' }}>{candidate.resume?.coverLetter}</span>
                   </Container>
-
                </Grid.Row>
                <Grid.Row>
                   <Grid.Column width={8}>

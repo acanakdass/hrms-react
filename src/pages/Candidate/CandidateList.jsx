@@ -10,6 +10,8 @@ function CandidateList() {
 
    const [candidates, setCandidates] = useState([])
 
+
+
    useEffect(() => {
       let candidateService = new CandidateService();
       candidateService.getAll()
