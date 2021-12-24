@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import toast from 'react-hot-toast';
-import { Header, Divider, Card, Table, Button, Icon, Loader, Modal } from 'semantic-ui-react';
-import CandidateService from '../../../services/candidateService';
-import ConfirmModal from './Modals/ConfirmModal';
-function AdminCandidatesList() {
+import { Icon, Label, Menu, Table, Modal, Button, Header, Divider } from 'semantic-ui-react'
+import SystemEmployeeService from '../../services/systemEmployeeService';
 
-   const [candidates, setCandidates] = useState([])
+function ListSystemEmployees() {
+
+   const [systemEmployees, setSystemEmployees] = useState([])
    const [deleteModalOpen, setDeleteModalOpen] = useState(false)
    const [userToDelete, setUserToDelete] = useState({})
-   let candidateService = new CandidateService();
-
+   const systemEmployeeService = new SystemEmployeeService();
    useEffect(() => {
-      candidateService.getAll().then((res) => {
+      systemEmployeeService
+         .getAll()
+         .then((result) => setSystemEmployees(result.data.data));
+   }, []);
+   useEffect(() => {
+      systemEmployeeService.getAll().then((res) => {
          console.log(res.data.data.length)
-         setCandidates(res.data.data)
+         setSystemEmployees(res.data.data)
       })
    }, [deleteModalOpen])
 
-   const deleteCandidate = (id) => {
-      candidateService.delete(id).then(res => console.log(res.data))
-   }
-   useEffect(() => {
-      // console.log(deleteModalOpen)
-   }, [deleteModalOpen])
    return (
-
       <div style={{ padding: 20, margin: 20 }}>
-         <Header textAlign='center' size='huge'>Candidates</Header>
+         <Header textAlign='center' size='huge'>System Employees</Header>
          <Divider />
 
          {/* {candidates.length == 0 ? <Header size='medium' textAlign='center'>No candidates in favorites</Header> : ''} */}
@@ -39,8 +35,7 @@ function AdminCandidatesList() {
                   <Table.Row>
                      <Table.HeaderCell>First Name</Table.HeaderCell>
                      <Table.HeaderCell>Last Name</Table.HeaderCell>
-                     <Table.HeaderCell>Birth Year</Table.HeaderCell>
-                     <Table.HeaderCell>Last Position</Table.HeaderCell>
+                     <Table.HeaderCell>Email</Table.HeaderCell>
                      <Table.HeaderCell textAlign='center'></Table.HeaderCell>
 
                      {/* <Table.HeaderCell textAlign='right'>Notes</Table.HeaderCell> */}
@@ -48,17 +43,16 @@ function AdminCandidatesList() {
                </Table.Header>
                <Table.Body>
                   {
-                     candidates.map((candidate) => (
-                        <Table.Row key={candidate.id}>
-                           <Table.Cell>{candidate.firstName}</Table.Cell>
-                           <Table.Cell>{candidate.lastName}</Table.Cell>
-                           <Table.Cell>{candidate.birthYear}</Table.Cell>
-                           <Table.Cell>{candidate.resume?.jobExperiences[candidate.resume.jobExperiences.length - 1].position}</Table.Cell>
+                     systemEmployees.map((employee) => (
+                        <Table.Row>
+                           <Table.Cell>{employee.firstName}</Table.Cell>
+                           <Table.Cell>{employee.lastName}</Table.Cell>
+                           <Table.Cell>{employee.email}</Table.Cell>
                            <Table.Cell textAlign='center'>
 
                               <Button onClick={() => setDeleteModalOpen(true)} color='blue' size="medium" icon="edit" />
                               <Button onClick={() => {
-                                 setUserToDelete(candidate);
+                                 setUserToDelete(employee);
                                  console.log(userToDelete)
                                  setDeleteModalOpen(true)
                               }} color='red' size="medium" icon="trash alternate" />
@@ -79,8 +73,8 @@ function AdminCandidatesList() {
             size='small'
          >
             <Header icon>
-               <Icon name='archive' />
-               Archive Old Message
+               <Icon name='trash' />
+               Delete Employee
             </Header>
             <Modal.Content>
                <p>
@@ -94,14 +88,14 @@ function AdminCandidatesList() {
                   <Icon name='remove' /> No
                </Button>
                <Button color='green' inverted onClick={() => {
-                  candidateService.delete(userToDelete.id).then(res => {
-                     toast.success('Candidate deleted successfully.')
-                     console.log(res.data)
-                     setDeleteModalOpen(false)
-                  }).catch((err) => {
-                     toast.error('Error while deleting candidate.')
-                     console.log("hata oluştu :" + err)
-                  })
+                  // candidateService.delete(userToDelete.id).then(res => {
+                  //    toast.success('Candidate deleted successfully.')
+                  //    console.log(res.data)
+                  //    setDeleteModalOpen(false)
+                  // }).catch((err) => {
+                  //    toast.error('Error while deleting candidate.')
+                  //    console.log("hata oluştu :" + err)
+                  // })
                }}>
                   <Icon name='checkmark' /> Yes
                </Button>
@@ -112,4 +106,4 @@ function AdminCandidatesList() {
    )
 }
 
-export default AdminCandidatesList
+export default ListSystemEmployees

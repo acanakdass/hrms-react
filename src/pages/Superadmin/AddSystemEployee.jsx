@@ -1,19 +1,15 @@
-
-import { ErrorMessage, Field, Formik } from 'formik'
-import { Form as FormikForm } from 'formik';
 import React, { useState } from 'react'
-import toast from 'react-hot-toast';
-import { Divider, Form, FormField, Header, Button } from 'semantic-ui-react';
 import * as Yup from "yup";
-import CandidateService from '../../services/candidateService';
-import ImageService from '../../services/imageService';
+import toast from 'react-hot-toast';
 import HrmsTextInput from '../../utilities/customFormControls/HrmsTextInput';
-
-function CandidateAddInfos(props) {
+import { Formik } from 'formik'
+import { Form as FormikForm } from 'formik';
+import { Form, Button } from 'semantic-ui-react';
+import SystemEmployeeService from '../../services/systemEmployeeService';
+const AddSystemEployee = () => {
 
 
    const [isLoading, setIsLoading] = useState(false);
-   const [password, setPassword] = useState('');
 
 
 
@@ -22,28 +18,34 @@ function CandidateAddInfos(props) {
    const schema = Yup.object({
       firstName: Yup.string().required("İsim alanı zorunludur"),
       lastName: Yup.string().required("Soyisim alanı zorunludur"),
+      birthYear: Yup.number().required("Doğum Yılı alanı zorunludur"),
       email: Yup.string().email().required("Email alanı zorunludur"),
+      identityNumber: Yup.string().required("Tc No Yılı alanı zorunludur"),
       password: Yup.string().min(8).required("Şifre alanı zorunludur"),
       passwordConfirm: Yup.string().min(8).required('Şifre Tekrar Alanı Zorunludur')
    });
 
    const handleSubmit = (values) => {
+      console.log(values)
       setIsLoading(true);
-      let candidateService = new CandidateService();
-      candidateService.add(values).then(res => {
+      let systemEmployeeService = new SystemEmployeeService();
+      systemEmployeeService.add(values).then(res => {
          if (res.data.success) {
             toast.success(res.data.message);
             // setAddedUserId(res.data.data);
+            console.log(res.data)
             setIsLoading(false);
-            props.setstep('photo');
-            props.setAddedUser(res.data.data)
+            // props.setstep('photo');
+            // props.setAddedUser(res.data.data)
          } else {
             toast.error(res.data.message)
             setIsLoading(false)
          }
+      }).finally(() => {
+         setIsLoading(false)
       });
-   }
 
+   }
    return (
       <div style={{ margin: '2em 10em' }}>
          <div style={{ border: '0,5px solid', borderColor: 'lightgray', padding: '3em' }}>
@@ -74,4 +76,4 @@ function CandidateAddInfos(props) {
    )
 }
 
-export default CandidateAddInfos
+export default AddSystemEployee

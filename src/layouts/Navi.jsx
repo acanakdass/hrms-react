@@ -70,22 +70,23 @@ function Navi() {
                            </Dropdown.Menu>
                            </Dropdown>
                         </Dropdown.Item> */}
-                     <Dropdown.Item as={Link} to="/admin/candidates/list">Candidates List</Dropdown.Item>
+                     <Dropdown.Item as={Link} to="/admin/candidates/list">Manage Candidates</Dropdown.Item>
                      <Dropdown.Divider />
-                     <Dropdown.Header>Candidates</Dropdown.Header>
-                     <Dropdown.Item>
-                        <Dropdown text='Clothing'>
+                     <Dropdown.Header>System Employee</Dropdown.Header>
+                     {/* <Dropdown.Item>
+                        <Dropdown text='Add'>
                            <Dropdown.Menu>
-                              <Dropdown.Header>Mens</Dropdown.Header>
+                              <Dropdown.Header>Add System Employee</Dropdown.Header>
                               <Dropdown.Item>Shirts</Dropdown.Item>
                               <Dropdown.Divider />
                               <Dropdown.Header>Womens</Dropdown.Header>
                               <Dropdown.Item>Dresses</Dropdown.Item>
                            </Dropdown.Menu>
                         </Dropdown>
-                     </Dropdown.Item>
-                     <Dropdown.Item>Home Goods</Dropdown.Item>
-                     <Dropdown.Item>Bedroom</Dropdown.Item>
+                     </Dropdown.Item> */}
+                     <Dropdown.Item as={Link} to="/admin/add/systememployee">Add System Employee</Dropdown.Item>
+                     <Dropdown.Item as={Link} to="/admin/systememployees/list">Manage System Employees</Dropdown.Item>
+
 
                   </Dropdown.Menu>
                </Dropdown>

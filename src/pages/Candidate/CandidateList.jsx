@@ -22,7 +22,7 @@ function CandidateList() {
       <div>
          <Card.Group centered >
             {
-               candidates.map((candidate) => (
+               candidates?.map((candidate) => (
                   <CandidateCard key={candidate.id} candidate={candidate} />
 
                ))

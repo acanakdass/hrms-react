@@ -10,12 +10,12 @@ function CandidateAddPhoto(props) {
 
    const handleUpload = () => {
       setIsLoading(true)
-      console.log(props.userId)
+      let id = props.userId
       if (photoFile != null) {
          let imageService = new ImageService();
          let formData = new FormData();
          formData.append("file", photoFile);
-         formData.append('userId', props.userId);
+         formData.append('userId', id);
          // toast.success(addedUserId);
          imageService.upload(formData).then(res => {
             toast.success(res.data.message);
