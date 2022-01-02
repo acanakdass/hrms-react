@@ -48,7 +48,8 @@ export default function SignedIn(props) {
          <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
             <Tooltip title="Account settings">
                <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-                  <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                  {/* <Avatar sx={{ width: 32, height: 32 }}>T</Avatar> */}
+                  <Avatar sx={{ width: 32, height: 32 }} src={props.currentUser?.photoUrl} />
                </IconButton>
             </Tooltip>
          </Box>
@@ -87,7 +88,7 @@ export default function SignedIn(props) {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
          >
             <MenuItem>
-               <Avatar /> Profile
+               <Avatar src={props.currentUser?.photoUrl} /> {props.currentUser?.email}
             </MenuItem>
             <MenuItem>
                <Avatar /> My account

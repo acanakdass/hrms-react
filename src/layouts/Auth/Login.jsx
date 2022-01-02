@@ -1,38 +1,126 @@
-import React from 'react'
-import { Button, Divider, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AuthService from '../../services/authService';
 
-function Login() {
+function Copyright(props) {
    return (
-      <div>
-         <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
-            <Grid.Column style={{ maxWidth: 350 }}>
-               <Image src="https://lh3.googleusercontent.com/proxy/oURZbxst2BMj_MWgGOEf2wykHV-yg3fOG8vG9I7Rud2wvehG_s8hqpd9LYv35FdNG18EY2lzaDXjYfb_Zd0PdhKs57Gda58jy7DLWdSqlQ" />
-               <Header as='h1' color='blue' textAlign='center'>
-                  Log-in to your account
-               </Header>
-               <Form size='large'>
-                  <Segment stacked>
-                     <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-                     <Form.Input
-                        fluid
-                        icon='lock'
-                        iconPosition='left'
-                        placeholder='Password'
-                        type='password'
-                     />
-
-                     <Button color='blue' fluid size='large'>
-                        Login
-                     </Button>
-                  </Segment>
-               </Form>
-               <Message>
-                  New to us? <a href='#'>Sign Up</a>
-               </Message>
-            </Grid.Column>
-         </Grid>
-      </div>
-   )
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+         {'Copyright © '}
+         <Link color="inherit" href="https://mui.com/">
+            Your Website
+         </Link>{' '}
+         {new Date().getFullYear()}
+         {'.'}
+      </Typography>
+   );
 }
 
-export default Login
+const theme = createTheme();
+
+const authService = new AuthService();
+
+export default function SignIn() {
+
+
+
+   const handleSubmit = (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const formData = new FormData();
+      formData.append("username", data.get('email'));
+      formData.append("password", data.get('password'));
+
+      authService.login(formData).then(res => {
+         console.log('res: ')
+         console.log(formData.get('username'))
+         console.log(res.data.accesToken)
+         localStorage.setItem('bearer', res.data.accesToken)
+         window.location.href = '/'
+      }).catch(er => {
+         console.log(er)
+      })
+
+   };
+
+   return (
+      <ThemeProvider theme={theme}>
+         <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <Box
+               sx={{
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+               }}
+            >
+               <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                  <LockOutlinedIcon />
+               </Avatar>
+               <Typography component="h1" variant="h5">
+                  Sign in
+               </Typography>
+               <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                  <TextField
+                     margin="normal"
+                     required
+                     fullWidth
+                     id="email"
+                     label="Email Address"
+                     name="email"
+                     autoComplete="email"
+                     autoFocus
+                  />
+                  <TextField
+                     margin="normal"
+                     required
+                     fullWidth
+                     name="password"
+                     label="Password"
+                     type="password"
+                     id="password"
+                     autoComplete="current-password"
+                  />
+                  <FormControlLabel
+                     control={<Checkbox value="remember" color="primary" />}
+                     label="Remember me"
+                  />
+                  <Button
+                     type="submit"
+                     fullWidth
+                     variant="contained"
+                     sx={{ mt: 3, mb: 2 }}
+                  >
+                     Sign In
+                  </Button>
+                  <Grid container>
+                     <Grid item xs>
+                        <Link href="#" variant="body2">
+                           Forgot password?
+                        </Link>
+                     </Grid>
+                     <Grid item>
+                        <Link href="#" variant="body2">
+                           {"Don't have an account? Sign Up"}
+                        </Link>
+                     </Grid>
+                  </Grid>
+               </Box>
+            </Box>
+            <Copyright sx={{ mt: 8, mb: 4 }} />
+         </Container>
+      </ThemeProvider>
+   );
+}

@@ -1,7 +1,8 @@
 import axios from "axios";
+import BaseUrl from "./BaseUrl";
 
 export default class CandidateService {
-   baseUrl = "http://localhost:8080/api/candidates";
+   baseUrl = BaseUrl + "/api/candidates";
 
 
    getAll() {

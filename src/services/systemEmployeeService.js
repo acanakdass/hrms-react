@@ -1,7 +1,8 @@
 import axios from "axios";
+import BaseUrl from "./BaseUrl";
 
 export default class SystemEmployeeService {
-   baseUrl = "http://localhost:8080/api/systemEmployees";
+   baseUrl = BaseUrl + "/api/systemEmployees";
 
 
    getAll() {

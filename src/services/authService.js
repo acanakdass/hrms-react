@@ -1,13 +1,14 @@
 import axios from "axios";
-
+import BaseUrl from "./BaseUrl";
 export default class AuthService {
-   baseUrl = "http://localhost:8080/api/auth";
+   baseUrl = BaseUrl + "/api";
 
-   getAll() {
-      return axios.get(this.baseUrl + "/getAll");
+   login(formData) {
+      return axios.post(this.baseUrl + "/login", formData);
    }
 
-   add(employer) {
-      return axios.post(this.baseUrl + "/ad", employer);
+
+   getUserByToken(token) {
+      return axios.get(this.baseUrl + "/auth/getUserByToken?token=" + token);
    }
 }

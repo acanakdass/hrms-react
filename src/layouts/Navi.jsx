@@ -6,11 +6,28 @@ import CartSummary from './CartSummary'
 import { useHistory } from "react-router";
 import SignedIn from '../components/Navbar/SignedIn';
 import SignedOut from '../components/Navbar/SignedOut';
+import AuthService from '../services/authService';
+import { useEffect } from 'react';
 
 function Navi() {
 
+   const [currentUser, setCurrentUser] = useState(null)
+
    const [isAuthenticated, setIsAuthenticated] = useState(true)
    const history = useHistory();
+   const authService = new AuthService()
+
+   const checkIsAuthenticated = () => {
+      let token = localStorage.getItem('bearer')
+      if (token != undefined) {
+         authService.getUserByToken(token).then(res => {
+            console.log(res.data)
+            setCurrentUser(res.data.data)
+         }).catch(er => {
+            console.log(er)
+         })
+      }
+   }
 
    function handleSignOut() {
       setIsAuthenticated(false);
@@ -22,6 +39,10 @@ function Navi() {
       history.push("/auth/login")
    }
 
+
+   useEffect(() => {
+      checkIsAuthenticated()
+   }, [])
    return (
       <div style={{ marginBottom: '5em' }}>
          <Menu fixed="top" inverted >
@@ -87,11 +108,13 @@ function Navi() {
                      <Dropdown.Item as={Link} to="/admin/add/systememployee">Add System Employee</Dropdown.Item>
                      <Dropdown.Item as={Link} to="/admin/systememployees/list">Manage System Employees</Dropdown.Item>
 
-
+                     <Dropdown.Header>Employer</Dropdown.Header>
+                     <Dropdown.Item as={Link} to="/admin/add/systememployee">Add Job Advertisement</Dropdown.Item>
+                     <Dropdown.Item as={Link} to="/admin/systememployees/list">Manage Job Advertisements</Dropdown.Item>
                   </Dropdown.Menu>
                </Dropdown>
                <Menu.Item position='right'>
-                  {isAuthenticated ? <SignedIn signOut={handleSignOut} /> : <SignedOut signIn={handleSignIn} />}
+                  {isAuthenticated ? <SignedIn currentUser={currentUser} signOut={handleSignOut} /> : <SignedOut signIn={handleSignIn} />}
                </Menu.Item>
 
             </Container>

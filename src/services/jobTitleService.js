@@ -1,7 +1,8 @@
 import axios from "axios";
+import BaseUrl from "./BaseUrl";
 
 export default class JobTitleService {
-   baseUrl = "http://localhost:8080/api/jobTitles";
+   baseUrl = BaseUrl + "/api/jobTitles";
 
    getAll() {
       return axios.get(this.baseUrl + "/getAll");

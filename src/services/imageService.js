@@ -1,7 +1,8 @@
 import axios from "axios";
+import BaseUrl from "./BaseUrl";
 
 export default class ImageService {
-   baseUrl = "http://localhost:8080/api/cloudinary";
+   baseUrl = BaseUrl + "/api/cloudinary";
 
    upload(formData) {
       const config = {
