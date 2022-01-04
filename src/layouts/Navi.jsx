@@ -23,19 +23,22 @@ function Navi() {
          authService.getUserByToken(token).then(res => {
             console.log(res.data)
             setCurrentUser(res.data.data)
+            setIsAuthenticated(true)
          }).catch(er => {
             console.log(er)
+            setIsAuthenticated(false)
          })
       }
+      setIsAuthenticated(false)
    }
 
    function handleSignOut() {
       setIsAuthenticated(false);
-      history.push("/")
+      localStorage.removeItem('bearer')
+      window.location.href = "/auth/login"
    }
 
    function handleSignIn() {
-      setIsAuthenticated(true)
       history.push("/auth/login")
    }
 

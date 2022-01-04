@@ -12,7 +12,6 @@ function AdminCandidatesList() {
 
    useEffect(() => {
       candidateService.getAll().then((res) => {
-         console.log(res.data.data.length)
          setCandidates(res.data.data)
       })
    }, [deleteModalOpen])
@@ -90,18 +89,21 @@ function AdminCandidatesList() {
             <Modal.Actions>
                <Button basic color='red' inverted onClick={() => {
                   setDeleteModalOpen(false)
+                  console.log("userToDelete.id")
+                  console.log(userToDelete.id)
                }}>
                   <Icon name='remove' /> No
                </Button>
                <Button color='green' inverted onClick={() => {
-                  candidateService.delete(userToDelete.id).then(res => {
-                     toast.success('Candidate deleted successfully.')
-                     console.log(res.data)
-                     setDeleteModalOpen(false)
-                  }).catch((err) => {
-                     toast.error('Error while deleting candidate.')
-                     console.log("hata oluştu :" + err)
-                  })
+                  deleteCandidate(userToDelete.id)
+                  // candidateService.delete(userToDelete.id).then(res => {
+                  //    toast.success('Candidate deleted successfully.')
+                  //    console.log(res.data)
+                  //    setDeleteModalOpen(false)
+                  // }).catch((err) => {
+                  //    toast.error('Error while deleting candidate.')
+                  //    console.log(err.message)
+                  // })
                }}>
                   <Icon name='checkmark' /> Yes
                </Button>

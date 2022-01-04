@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AuthService from '../../services/authService';
+import toast from 'react-hot-toast';
 
 function Copyright(props) {
    return (
@@ -41,15 +42,20 @@ export default function SignIn() {
       const formData = new FormData();
       formData.append("username", data.get('email'));
       formData.append("password", data.get('password'));
+      console.log(formData.get('username'))
+      console.log(formData.get('password'))
 
       authService.login(formData).then(res => {
-         console.log('res: ')
-         console.log(formData.get('username'))
-         console.log(res.data.accesToken)
          localStorage.setItem('bearer', res.data.accesToken)
-         window.location.href = '/'
+         toast.success("Successful Login")
+         setTimeout(() => {
+            window.location.href = '/'
+         }, 1000)
+
       }).catch(er => {
-         console.log(er)
+         console.log('hata')
+         console.log(er.response.data)
+         toast.error(er.response.data.message)
       })
 
    };

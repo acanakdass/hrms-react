@@ -24,11 +24,12 @@ function CandidateAddInfos(props) {
       lastName: Yup.string().required("Soyisim alanı zorunludur"),
       email: Yup.string().email().required("Email alanı zorunludur"),
       password: Yup.string().min(8).required("Şifre alanı zorunludur"),
-      passwordConfirm: Yup.string().min(8).required('Şifre Tekrar Alanı Zorunludur')
+      // passwordConfirm: Yup.string().min(8).required('Şifre Tekrar Alanı Zorunludur')
    });
 
    const handleSubmit = (values) => {
       setIsLoading(true);
+      console.log(values)
       let candidateService = new CandidateService();
       candidateService.add(values).then(res => {
          if (res.data.success) {
@@ -63,7 +64,7 @@ function CandidateAddInfos(props) {
                   </Form.Group>
                   <Form.Group widths='equal'>
                      <HrmsTextInput name="password" placeholder="Password" />
-                     <HrmsTextInput name="passwordConfirm" placeholder="Confirm Password" />
+                     {/* <HrmsTextInput name="passwordConfirm" placeholder="Confirm Password" /> */}
                   </Form.Group>
                   <Button fluid loading={isLoading} color="blue" type="submit">Sonraki</Button>
                </FormikForm>
