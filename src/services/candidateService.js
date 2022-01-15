@@ -10,11 +10,16 @@ export default class CandidateService {
    }
 
    add(candidate) {
-      return axios.post(this.baseUrl + "/add", candidate);
+      return axios.post(this.baseUrl + "/add", candidate, {
+         headers: {
+            "Content-Type": "application/json"
+         }
+      });
    }
 
    delete(id) {
-      return axios.delete(this.baseUrl + "/delete?id=" + id);
+      console.log(id)
+      return axios.post(this.baseUrl + "/delete?id=" + id);
    }
 
    getById(id) {

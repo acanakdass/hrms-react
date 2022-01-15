@@ -4,6 +4,7 @@ export default class AuthService {
    baseUrl = BaseUrl + "/api";
 
    login(formData) {
+      console.log(formData)
       return axios.post(this.baseUrl + "/login", formData);
    }
 

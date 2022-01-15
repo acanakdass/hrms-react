@@ -9,6 +9,6 @@ export default class EmployerService {
    }
 
    add(employer) {
-      return axios.post(this.baseUrl + "/ad", employer);
+      return axios.post(this.baseUrl + "/add", employer);
    }
 }

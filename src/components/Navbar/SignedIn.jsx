@@ -33,6 +33,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import { Header } from 'semantic-ui-react';
 
 export default function SignedIn(props) {
    const [anchorEl, setAnchorEl] = React.useState(null);
@@ -90,15 +91,10 @@ export default function SignedIn(props) {
             <MenuItem>
                <Avatar src={props.currentUser?.photoUrl} /> {props.currentUser?.email}
             </MenuItem>
-            <MenuItem>
-               <Avatar /> My account
-            </MenuItem>
+
             <Divider />
             <MenuItem>
-               <ListItemIcon>
-                  <PersonAdd fontSize="small" />
-               </ListItemIcon>
-               Add another account
+               Role : {props.currentUser?.roles[0].name.replace('_role', '')}
             </MenuItem>
             <MenuItem>
                <ListItemIcon>

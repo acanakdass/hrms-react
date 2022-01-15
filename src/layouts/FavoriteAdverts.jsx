@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Divider, Header } from 'semantic-ui-react';
-import JobAdvertCard from '../components/JobAdvert/JobAdvertCard';
+import JobAdvertCard from '../components/JobAdvert/AdminJobAdvertCard';
 
 function FavoriteAdverts() {
 

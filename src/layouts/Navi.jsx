@@ -112,8 +112,8 @@ function Navi() {
                      <Dropdown.Item as={Link} to="/admin/systememployees/list">Manage System Employees</Dropdown.Item>
 
                      <Dropdown.Header>Employer</Dropdown.Header>
-                     <Dropdown.Item as={Link} to="/admin/add/systememployee">Add Job Advertisement</Dropdown.Item>
-                     <Dropdown.Item as={Link} to="/admin/systememployees/list">Manage Job Advertisements</Dropdown.Item>
+                     <Dropdown.Item as={Link} to="/admin/jobAdvertsAdd">Add Job Advertisement</Dropdown.Item>
+                     <Dropdown.Item as={Link} to="/admin/jobAdverts/list">Manage Job Advertisements</Dropdown.Item>
                   </Dropdown.Menu>
                </Dropdown>
                <Menu.Item position='right'>

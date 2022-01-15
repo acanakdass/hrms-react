@@ -17,13 +17,14 @@ function CandidateAddInfos(props) {
 
 
 
-   const initialValues = { firstName: "", lastName: "", birthYear: "", email: "", identityNumber: "", password: "" }
+   const initialValues = { firstName: "", lastName: "", email: "", birthYear: "", identityNumber: "", password: "" }
 
    const schema = Yup.object({
       firstName: Yup.string().required("İsim alanı zorunludur"),
       lastName: Yup.string().required("Soyisim alanı zorunludur"),
       email: Yup.string().email().required("Email alanı zorunludur"),
       password: Yup.string().min(8).required("Şifre alanı zorunludur"),
+      birthYear: Yup.string().min(4).required("Doğum Yılı Alanı Zorunludur"),
       // passwordConfirm: Yup.string().min(8).required('Şifre Tekrar Alanı Zorunludur')
    });
 
@@ -31,7 +32,7 @@ function CandidateAddInfos(props) {
       setIsLoading(true);
       console.log(values)
       let candidateService = new CandidateService();
-      candidateService.add(values).then(res => {
+      candidateService.add(JSON.stringify(values)).then(res => {
          if (res.data.success) {
             toast.success(res.data.message);
             // setAddedUserId(res.data.data);

@@ -17,7 +17,15 @@ function AdminCandidatesList() {
    }, [deleteModalOpen])
 
    const deleteCandidate = (id) => {
-      candidateService.delete(id).then(res => console.log(res.data))
+      console.log('deleting')
+      candidateService.delete(id).then(res => {
+         toast.success('Candidate deleted successfully.')
+         console.log(res.data)
+         setDeleteModalOpen(false)
+      }).catch((err) => {
+         toast.error('Error while deleting candidate.')
+         console.log(err.message)
+      })
    }
    useEffect(() => {
       // console.log(deleteModalOpen)
@@ -95,6 +103,7 @@ function AdminCandidatesList() {
                   <Icon name='remove' /> No
                </Button>
                <Button color='green' inverted onClick={() => {
+                  console.log(userToDelete)
                   deleteCandidate(userToDelete.id)
                   // candidateService.delete(userToDelete.id).then(res => {
                   //    toast.success('Candidate deleted successfully.')
@@ -105,11 +114,10 @@ function AdminCandidatesList() {
                   //    console.log(err.message)
                   // })
                }}>
-                  <Icon name='checkmark' /> Yes
+                  <Icon name='checkmark' /> Yess
                </Button>
             </Modal.Actions>
          </Modal>
-
       </div>
    )
 }

@@ -39,10 +39,18 @@ export default class JobAdvertisementService {
       return axios.get(this.baseUrl + "/getByIdentityNumber?identityNumber=" + identityNumber);
    }
    setActiveByJobAdvertisementId(id) {
-      return axios.get(this.baseUrl + "/setActive?jobAdvertisementId=" + id);
+      return axios.post(this.baseUrl + "/setActive?jobAdvertisementId=" + id);
+   }
+
+   setConfirmedByJobAdvertisementId(jobAdvertId, systemEmployeeId) {
+      return axios.post(this.baseUrl + "/setConfirmed", {
+         "jobAdvertId": jobAdvertId,
+         "systemEmployeeId": systemEmployeeId
+      });
    }
 
    setPassiveByJobAdvertisementId(id) {
-      return axios.get(this.baseUrl + "/setPassive?jobAdvertisementId=" + id);
+      return axios.post(this.baseUrl + "/setPassive?jobAdvertisementId=" + id);
+
    }
 }

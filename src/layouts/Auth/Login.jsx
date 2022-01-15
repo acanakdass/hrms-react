@@ -44,7 +44,7 @@ export default function SignIn() {
       formData.append("password", data.get('password'));
       console.log(formData.get('username'))
       console.log(formData.get('password'))
-
+      console.log(formData.values)
       authService.login(formData).then(res => {
          localStorage.setItem('bearer', res.data.accesToken)
          toast.success("Successful Login")
