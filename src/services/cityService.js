@@ -5,7 +5,7 @@ export default class CityService {
    baseUrl = BaseUrl + "/api/cities";
 
    getAll() {
-      return axios.get(this.baseUrl + "/getAll");
+      return axios.get(this.baseUrl + "/getall");
    }
 
 }

@@ -53,4 +53,13 @@ export default class JobAdvertisementService {
       return axios.post(this.baseUrl + "/setPassive?jobAdvertisementId=" + id);
 
    }
+
+   //WorkType worktime
+   getAllWorkTypes() {
+      return axios.get(this.baseUrl + "/getallworktypes");
+   }
+
+   getAllWorkTimes() {
+      return axios.get(this.baseUrl + "/getallworktimes");
+   }
 }

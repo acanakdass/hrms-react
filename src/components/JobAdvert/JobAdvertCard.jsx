@@ -61,14 +61,14 @@ function JobAdvertCard(props) {
                </div>
                <div style={{ border: '0px solid' }}>
                   <Header as='h2' >
-                     {props.advert.jobTitle.title}
+                     {props.advert.jobTitle?.title}
                   </Header>
                </div>
 
                <div>
                   <span>
                      <Icon name="map marker" />
-                     {props.advert.city.cityName}
+                     {props.advert.city?.cityName}
                      <div>
 
                         {handleDate(props.advert.releaseDate)}

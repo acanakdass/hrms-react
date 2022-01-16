@@ -4,11 +4,11 @@ import { Form as FormikForm } from 'formik';
 import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput';
 import { Form, Button, Input, Header, Divider, FormField, FormGroup, Select } from 'semantic-ui-react';
 import * as Yup from 'yup';
-import HrmsTextArea from '../../../utilities/customFormControls/HrmsTextArea';
 import ResumeService from '../../../services/resumeService';
 import toast from 'react-hot-toast';
 import HrmsSelectInput from '../../../utilities/customFormControls/HrmsSelectInput';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
+import CustomTextArea from '../../../utilities/customFormControls/CustomTextArea';
 
 
 function CandidateAddResume(props) {
@@ -92,7 +92,7 @@ function CandidateAddResume(props) {
 
                   <FormikForm className="ui form">
                      <FormField>
-                        <HrmsTextArea label='Cover Letter' name="coverLetter" placeholder='Write a cover letter..' />
+                        <CustomTextArea label='Cover Letter' name="coverLetter" placeholder='Write a cover letter..' />
                      </FormField>
                      <Form.Group widths="equal">
 

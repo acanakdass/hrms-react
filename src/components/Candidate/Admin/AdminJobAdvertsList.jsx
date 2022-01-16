@@ -3,6 +3,7 @@ import { Pagination } from 'semantic-ui-react';
 import JobAdvertisementService from '../../../services/jobAdvertisementService';
 import AdminJobAdvertCard from '../../JobAdvert/AdminJobAdvertCard';
 import JobAdvertCard from '../../JobAdvert/AdminJobAdvertCard';
+import AuthService from '../../../services/authService';
 
 function AdminJobAdvertsList() {
 
@@ -10,6 +11,9 @@ function AdminJobAdvertsList() {
    const [pageNo, setPageNo] = useState(1)
    const [pageSize, setPageSize] = useState(3)
    const [allAdvertCount, setAllAdvertCount] = useState(5)
+   const [currentUserId, setCurrentUserId] = useState(null)
+
+   const authService = new AuthService()
 
    useEffect(() => {
       let jobAdvertService = new JobAdvertisementService();
@@ -24,6 +28,18 @@ function AdminJobAdvertsList() {
       console.log(jobAdverts)
    }, [pageNo])
 
+   useEffect(() => {
+      let token = localStorage.getItem('bearer')
+      if (token != undefined) {
+         authService.getUserByToken(token).then(res => {
+            console.log(res.data)
+            setCurrentUserId(res.data.data.id)
+         }).catch(er => {
+            console.log(er)
+         })
+      }
+   }, [])
+
    return (
       <div style={{ padding: '3em 10em 3em 10em' }}>
          <Pagination
@@ -36,7 +52,7 @@ function AdminJobAdvertsList() {
             totalPages={20}
          />
          {jobAdverts.map((advert) => (
-            <AdminJobAdvertCard advert={advert} />
+            <AdminJobAdvertCard userId={currentUserId} advert={advert} />
          ))}
       </div>
    )

@@ -37,6 +37,17 @@ function AdminJobAdvertCard(props) {
       })
    }
 
+   const confirmAdvert = () => {
+      jobAdvertService.setConfirmedByJobAdvertisementId(props.advert.id, props.userId).then((res) => {
+         setIsConfirmed(true)
+         console.log(res.data)
+         toast.success(res.data?.message)
+      }).catch(err => {
+         toast.error(err)
+      })
+      console.log(props.advert.id, props.userId)
+   }
+
 
 
    const handleDate = (dateString) => {
@@ -122,7 +133,7 @@ function AdminJobAdvertCard(props) {
                   {isConfirmed ? (
                      <Button color='blue' size='large'>Remove Confirmation</Button>
                   ) : (
-                     <Button color='blue' size='large'>Confirm Advert</Button>
+                     <Button onClick={() => confirmAdvert()} color='blue' size='large'>Confirm Advert</Button>
                   )}
                   {isActive ? (
                      <Button onClick={() => setPassive(props.advert.id)} color='green' size='large'>Set Passive</Button>
