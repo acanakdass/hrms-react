@@ -14,6 +14,8 @@ import CustomInput from '../../utilities/customFormControls/CustomInput';
 
 const AddJobAdvertisement = () => {
 
+   const [isLoading, setIsLoading] = useState(false);
+
 
    //FormValues
    const [cityId, setCityId] = useState()
@@ -94,28 +96,39 @@ const AddJobAdvertisement = () => {
 
 
    }, [])
-   const [isLoading, setIsLoading] = useState(false);
 
 
-   const handleSubmit = (values) => {
-      console.log(values)
-      // setIsLoading(true);
-      // let systemEmployeeService = new SystemEmployeeService();
-      // systemEmployeeService.add(values).then(res => {
-      //    if (res.data.success) {
-      //       toast.success(res.data.message);
-      //       // setAddedUserId(res.data.data);
-      //       console.log(res.data)
-      //       setIsLoading(false);
-      //       // props.setstep('photo');
-      //       // props.setAddedUser(res.data.data)
-      //    } else {
-      //       toast.error(res.data.message)
-      //       setIsLoading(false)
-      //    }
-      // }).finally(() => {
-      //    setIsLoading(false)
-      // });
+   const handleSubmit = () => {
+      var formData = {
+         jobTitleId,
+         description,
+         employerId,
+         maxSalary: parseInt(maxSalary),
+         minSalary: parseInt(minSalary),
+         quota: parseInt(quota),
+         workTimeId,
+         workTypeId,
+         cityId,
+         expirationDate
+      }
+      console.log(formData)
+      setIsLoading(true);
+
+      jobAdvertService.add(formData).then(res => {
+         if (res.data.success) {
+            toast.success(res.data.message);
+            // setAddedUserId(res.data.data);
+            console.log(res.data)
+            setIsLoading(false);
+            // props.setstep('photo');
+            // props.setAddedUser(res.data.data)
+         } else {
+            toast.error(res.data.message)
+            setIsLoading(false)
+         }
+      }).finally(() => {
+         setIsLoading(false)
+      });
 
    }
    return (
@@ -125,7 +138,7 @@ const AddJobAdvertisement = () => {
             <Divider />
             <br />
 
-            <Form>
+            <Form onSubmit={() => handleSubmit()}>
                <FormGroup widths='equal'>
                   <CustomDropdownInput
                      onChange={(e, { value }) => setJobTitleId(value)}
@@ -153,20 +166,16 @@ const AddJobAdvertisement = () => {
                      onChange={(e, { value }) => setWorkTypeId(value)}
                      label='Work Type' placeholder='Select Work Type' options={workTypes} />
                   <SemanticDatepicker label='Expiration Date' onChange={(e, data) => {
-                     setExpirationDate(data.value)
-                     let dateString = data.value.getFullYear() + "-" + (data.value.getMonth() + 1) + "-" + data.value.getDate()
-                     console.log(dateString)
-                     setExpirationDate(dateString)
+                     setExpirationDate(data.value?.toISOString().slice(0, 10))
                   }}></SemanticDatepicker>
 
                </FormGroup>
                <FormGroup widths='equal'>
-                  <CustomInput label='Quota' placeholder='1-5' type='number' />
-                  <CustomInput label='Min Salary' placeholder='Minimum Salary' type='text' />
-                  <CustomInput label='Max Salary' placeholder='Max Salary' type='text' />
-
-
+                  <CustomInput onChange={(e) => setQuota(e.target.value)} label='Quota' placeholder='1-5' type='number' />
+                  <CustomInput onChange={(e) => setMinSalary(e.target.value)} label='Min Salary' placeholder='Minimum Salary' type='text' />
+                  <CustomInput onChange={(e) => setMaxSalary(e.target.value)} label='Max Salary' placeholder='Max Salary' type='text' />
                </FormGroup>
+               <Button loading={isLoading} fluid color='blue'>Create Job Advertisement</Button>
             </Form>
             {/* <Button fluid  >test</Button> */}
          </div>

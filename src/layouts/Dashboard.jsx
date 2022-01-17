@@ -17,6 +17,7 @@ import AddSystemEployee from '../pages/Superadmin/AddSystemEployee';
 import ListSystemEmployees from '../pages/Superadmin/ListSystemEmployees';
 import AdminJobAdvertsList from '../components/Candidate/Admin/AdminJobAdvertsList';
 import AddJobAdvertisement from '../pages/Superadmin/AddJobAdvertisement';
+import EmployerRegister from '../pages/EmployerRegister';
 
 function Dashboard() {
    return (
@@ -40,6 +41,8 @@ function Dashboard() {
                   <Route exact path="/admin/jobAdverts/list" component={AdminJobAdvertsList} />
                   <Route exact path="/admin/add/systememployee" component={AddSystemEployee} />
                   <Route exact path="/admin/add/jobadvert" component={AddJobAdvertisement} />
+
+                  <Route exact path="/employer/register" component={EmployerRegister} />
                </Grid.Column>
             </Grid.Row>
          </Grid>

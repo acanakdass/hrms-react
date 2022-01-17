@@ -1,6 +1,5 @@
-import { useField } from 'formik'
 import React from 'react'
-import { Form, FormField, Label } from 'semantic-ui-react'
+import { Form, FormField } from 'semantic-ui-react'
 
 function CustomTextArea({ ...props }) {
 

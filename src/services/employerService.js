@@ -9,6 +9,10 @@ export default class EmployerService {
    }
 
    add(employer) {
-      return axios.post(this.baseUrl + "/add", employer);
+      return axios.post(this.baseUrl + "/add", employer, {
+         headers: {
+            "Content-Type": "application/json"
+         }
+      });
    }
 }

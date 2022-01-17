@@ -94,7 +94,7 @@ export default function SignedIn(props) {
 
             <Divider />
             <MenuItem>
-               Role : {props.currentUser?.roles[0].name.replace('_role', '')}
+               ROLE : {props.currentUser?.roles[0].name.replace('_role', '').toUpperCase()}
             </MenuItem>
             <MenuItem>
                <ListItemIcon>

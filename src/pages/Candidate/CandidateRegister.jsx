@@ -10,7 +10,7 @@ import ImageService from '../../services/imageService';
 import { Route, Switch } from 'react-router';
 import CandidateAddInfos from '../../components/Candidate/CandidateAddInfos';
 import CandidateRegisterStepper from '../../components/Candidate/CandidateRegisterStepper';
-import CandidateAddPhoto from '../../components/Candidate/CandidateAddPhoto';
+import UserAddPhoto from '../../components/Candidate/UserAddPhoto';
 import CandidateAddResume from '../../components/Candidate/CandidateAddResume/CandidateAddResume';
 function CandidateRegister() {
    const [step, setStep] = useState('info');
@@ -25,7 +25,7 @@ function CandidateRegister() {
          return (<CandidateAddInfos setstep={setStep} setAddedUser={setAddedUserId} />)
 
       if (step === 'photo')
-         return (<CandidateAddPhoto userId={addedUserId} setstep={setStep} />)
+         return (<UserAddPhoto userId={addedUserId} setstep={setStep} />)
 
       if (step === 'resume')
          return (<CandidateAddResume userId={addedUserId} setstep={setStep} />)

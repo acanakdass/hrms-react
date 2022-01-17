@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { FormField, Button } from 'semantic-ui-react';
 import ImageService from '../../services/imageService';
-function CandidateAddPhoto(props) {
+function UserAddPhoto(props) {
 
    const [photoFile, setPhotoFile] = useState(null);
    const [isLoading, setIsLoading] = useState(false);
@@ -40,4 +40,4 @@ function CandidateAddPhoto(props) {
    )
 }
 
-export default CandidateAddPhoto
+export default UserAddPhoto
