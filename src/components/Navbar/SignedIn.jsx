@@ -45,8 +45,8 @@ export default function SignedIn(props) {
       setAnchorEl(null);
    };
    return (
-      <React.Fragment>
-         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+      <div>
+         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', margin: 0, padding: 0 }}>
             <Tooltip title="Account settings">
                <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
                   {/* <Avatar sx={{ width: 32, height: 32 }}>T</Avatar> */}
@@ -109,6 +109,6 @@ export default function SignedIn(props) {
                Logout
             </MenuItem>
          </Menu>
-      </React.Fragment>
+      </div>
    );
 }

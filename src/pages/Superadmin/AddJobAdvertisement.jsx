@@ -1,8 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
-import * as Yup from "yup";
 import toast from 'react-hot-toast';
-import { Form, Button, FormField, FormGroup, Label, Header, Divider } from 'semantic-ui-react';
+import { Form, Button, FormGroup, Header, Divider } from 'semantic-ui-react';
 import JobTitleService from '../../services/jobTitleService';
 import CityService from '../../services/cityService';
 import CustomTextArea from '../../utilities/customFormControls/CustomTextArea';

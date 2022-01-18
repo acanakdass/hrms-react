@@ -12,12 +12,24 @@ export default class JobAdvertisementService {
       return axios.post(this.baseUrl + "/add", jobAdvertisement);
    }
 
+   delete(jobAdvertId) {
+      return axios.delete(this.baseUrl + "/delete?jobAdvertId=" + jobAdvertId);
+   }
+
    getAllActive() {
       return axios.get(this.baseUrl + "/getallactive");
    }
 
+   getAllByEmployerId(employerId) {
+      return axios.get(this.baseUrl + "/getAllByEmployerId?employerId=" + employerId);
+   }
+
    getAllActiveAndConfirmed() {
       return axios.get(this.baseUrl + "/getallactiveandconfirmed");
+   }
+
+   getAllActiveAndConfirmedSize() {
+      return axios.get(this.baseUrl + "/getAllActiveAndConfirmedSize");
    }
 
    getAllActiveAndConfirmedByPage(pageNo, pageSize) {

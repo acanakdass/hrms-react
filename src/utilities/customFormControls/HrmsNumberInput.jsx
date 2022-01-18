@@ -1,6 +1,6 @@
 import { useField } from 'formik'
 import React from 'react'
-import { Form, FormField, Label } from 'semantic-ui-react'
+import { FormField, Label } from 'semantic-ui-react'
 
 function HrmsTextInput({ ...props }) {
    // console.log(props.width)

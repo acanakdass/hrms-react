@@ -1,5 +1,5 @@
 import { Route } from 'react-router';
-import { Container, Sidebar } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import './App.css';
 import Login from './layouts/Auth/Login';
 import Dashboard from './layouts/Dashboard';

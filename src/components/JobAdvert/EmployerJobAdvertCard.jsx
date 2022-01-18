@@ -1,39 +1,40 @@
 import React from 'react'
-import { Card, Divider, Header, Icon, List, Button } from 'semantic-ui-react';
+import { Card, Divider, Header, Icon, Button, ButtonGroup, Accordion } from 'semantic-ui-react';
 import "./JobAdvertCard.css"
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
-import { height } from 'dom-helpers';
-import { useDispatch, useSelector } from 'react-redux';
-import { addAdvertToFavourites, removeAdvertFromFavourites } from '../../redux/store/actions/favouritesActions';
 import toast from 'react-hot-toast';
-import * as Mui from '@mui/material'
+import { useState, useEffect } from 'react';
+import JobAdvertisementService from '../../services/jobAdvertisementService';
+import CandidateCard from '../Candidate/CandidateCard';
+import ApplicationService from '../../services/applicationService';
+import { useHistory } from 'react-router';
 
-function JobAdvertCard(props) {
+function EmployerJobAdvertCard(props) {
 
-
-   const dispatch = useDispatch()
-
-   const handleAddToFavs = (advert) => {
-      dispatch(addAdvertToFavourites(advert))
-      toast.success('Successfully added to favorites!');
+   const [isConfirmed, setIsConfirmed] = useState(props.advert.systemEmployeeConfirm.confirmed)
+   const [isActive, setIsActive] = useState(props.advert.active)
+   const [candidate, setCandidate] = useState()
+   const jobAdvertService = new JobAdvertisementService();
+   const setActive = (id) => {
+      jobAdvertService.setActiveByJobAdvertisementId(id).then((res) => {
+         setIsActive(true)
+         console.log(res.data)
+         toast.success(res.data?.message)
+      }).catch(err => {
+         toast.error(err)
+      })
    }
 
-
-   const handleRemoveFromFavs = (id) => {
-      dispatch(removeAdvertFromFavourites(id))
-      toast(' successfully removed from favorites!');
+   const setPassive = (id) => {
+      jobAdvertService.setPassiveByJobAdvertisementId(id).then((res) => {
+         setIsActive(false)
+         console.log(res.data)
+         toast.success(res.data?.message)
+      }).catch(err => {
+         toast.error(err)
+      })
    }
 
-   const { favoriteAdverts } = useSelector(state => state.favorites);
-
-   const checkIfAddedToFavs = (id) => {
-      let isExists = favoriteAdverts.find(c => c.id == id) != null;
-      return isExists;
-   }
-
-
-
+   const history = useHistory()
 
 
    const handleDate = (dateString) => {
@@ -42,6 +43,44 @@ function JobAdvertCard(props) {
       var date = new Date(dateString);
       return date.toLocaleDateString('tr-TR', options);
    }
+
+
+
+
+
+   // useEffect(() => {
+   //    if (candidate == undefined) {
+   //       let applicationService = new ApplicationService();
+
+   //       applicationService.getByAdvertId(props.advert.id).then(res => {
+   //          console.log(res.data.data)
+   //          setCandidate(res.data.data)
+   //       })
+   //    }
+   //    if (candidate != undefined) {
+
+   //       candidate.map(c => (
+   //          console.log(c.candidate)
+   //       ))
+   //    }
+   // }, [candidate])
+
+   // const panels = [
+   //    {
+   //       key: 'showApplications',
+   //       title: {
+   //          content: 'Show Applications',
+   //          icon: 'question',
+   //       },
+   //       content: {
+   //          content: (
+   //             candidate?.map(c => (
+   //                <CandidateCard candidate={c.candidate} />
+   //             ))
+   //          ),
+   //       },
+   //    }
+   // ]
 
 
 
@@ -112,34 +151,32 @@ function JobAdvertCard(props) {
                </Header>
                <span >{props.advert.description}</span>
             </div>
+
             <br />
             <div>
+               <ButtonGroup fluid>
+                  <Button onClick={() => history.push("/employer/advert/applications/" + props.advert.id)} color='blue' size='large'>Show applications</Button>
+                  {isActive ? (
+                     <Button onClick={() => setPassive(props.advert.id)} color='green' size='large'>Set Passive</Button>
+                  ) : (
+                     <Button onClick={() => setActive(props.advert.id)} color='green' size='large'>Set Active</Button>
+                  )}
+                  {/* <Button color='red' size='large'>Delete Advert</Button> */}
+               </ButtonGroup>
+            </div>
 
 
-               {/* <Button.Group fluid>
-                  <Button onClick={ } color='blue'>Favorilere Ekle</Button>
-                  <Button color='blue'>Başvuru Yap</Button>
-               </Button.Group> */}
-               <Button.Group fluid>
-                  <Button onClick={() => checkIfAddedToFavs(props.advert.id) ? handleRemoveFromFavs(props.advert.id) : handleAddToFavs(props.advert)} animated='vertical'>
-                     <Button.Content style={{ color: checkIfAddedToFavs(props.advert.id) ? 'red' : 'rgb(34 133 208)' }} hidden> {checkIfAddedToFavs(props.advert.id) ? 'Remove from Favs' : 'Add to Favs'}</Button.Content>
-                     <Button.Content visible>
-                        <Icon color={checkIfAddedToFavs(props.advert.id) ? 'red' : 'blue'} name='favorite' />
-                     </Button.Content>
-                  </Button>
-               </Button.Group>
-            </div>
-            <br />
-            <Mui.Divider variant='middle' />
-            <br />
-            <div>
-               <Mui.Button
-                  onClick={() => props.applyToAdvert(props.advert.id)}
-                  variant='contained' fullWidth size='large'>Başvuru Yap</Mui.Button>
-            </div>
+            {/* <Accordion defaultActiveIndex={0} panels={panels} /> */}
+
          </Card>
+
+
+
+
+
+
       </div>
    )
 }
 
-export default JobAdvertCard
+export default EmployerJobAdvertCard
