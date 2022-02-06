@@ -6,17 +6,65 @@ import { Form, Button, Input, Header, Divider, FormField, FormGroup, Select } fr
 import * as Yup from 'yup';
 import ResumeService from '../../../services/resumeService';
 import toast from 'react-hot-toast';
-import HrmsSelectInput from '../../../utilities/customFormControls/HrmsSelectInput';
-import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import CustomTextArea from '../../../utilities/customFormControls/CustomTextArea';
+import CandidateService from '../../../services/candidateService';
+import { useParams } from 'react-router';
 
 
 function CandidateAddResume(props) {
+   const { id } = useParams();
+
+
    const [isLoading, setIsLoading] = useState(false);
 
+   const [initialValues, setInitialValues] = useState({
+      candidateId: props.userId ?? id,
+      coverLetter: '',
+      githubAddress: '',
+      linkedinAddress: '',
+      jobExperiences: [{
+         company: '',
+         position: '',
+         quitDate: '',
+         startDate: ''
+      }],
+      languages: [{
+         languageName: '',
+         level: ''
+      }],
+      skills: [{
+         name: '',
+      }],
+      schools: [{
+         department: '',
+         finishedDate: '',
+         graduateDate: '',
+         schoolName: '',
+         startedDate: ''
+      }]
+   });
+
    useEffect(() => {
-      console.log('adsaa')
+
+      console.log('--------------------');
+      console.log(id);
+      if (id != undefined) {
+         console.log(' id route param is not undefined');
+         getResumeByCandidateId(id);
+      }
    }, [])
+
+   let candidateService = new CandidateService();
+   const getResumeByCandidateId = () => {
+      candidateService.getById(id).then(res => {
+         console.log(res.data.data?.resume);
+         setInitialValues(res.data.data?.resume)
+         setInitialValues(prevState => ({
+            ...prevState,
+            coverLetter: res.data.data?.coverLetter
+         }));
+      }).catch(er => console.log('er : ' + er))
+   }
 
    const options = [
       { key: '1', text: 'Az', value: 1 },
@@ -48,32 +96,7 @@ function CandidateAddResume(props) {
       // alert(JSON.stringify(values, null, 2));
 
    }
-   const initialValues = {
-      candidateId: props.userId,
-      coverLetter: '',
-      githubAddress: '',
-      linkedinAddress: '',
-      jobExperiences: [{
-         company: '',
-         position: '',
-         quitDate: '',
-         startDate: ''
-      }],
-      languages: [{
-         languageName: '',
-         level: ''
-      }],
-      skills: [{
-         name: '',
-      }],
-      schools: [{
-         department: '',
-         finishedDate: '',
-         graduateDate: '',
-         schoolName: '',
-         startedDate: ''
-      }]
-   }
+
 
    const schema = Yup.object({
       coverLetter: Yup.string().required("Cover Letter alanı zorunludur"),
@@ -85,6 +108,7 @@ function CandidateAddResume(props) {
       <div style={{ margin: '2em 5em' }}>
          <div style={{ border: '0,5px solid', borderColor: 'lightgray', padding: '3em' }}>
             <Formik
+               enableReinitialize
                initialValues={initialValues}
                // validationSchema={schema}
                onSubmit={(values) => handleSubmit(values)}
@@ -92,7 +116,7 @@ function CandidateAddResume(props) {
 
                   <FormikForm className="ui form">
                      <FormField>
-                        <CustomTextArea label='Cover Letter' name="coverLetter" placeholder='Write a cover letter..' />
+                        <CustomTextArea label='Cover Letter' value={initialValues.coverLetter} name="coverLetter" placeholder='Write a cover letter..' />
                      </FormField>
                      <Form.Group widths="equal">
 

@@ -9,9 +9,9 @@ function UserAddPhoto(props) {
    const [isLoading, setIsLoading] = useState(false);
 
    const handleUpload = () => {
-      setIsLoading(true)
       let id = props.userId
       if (photoFile != null) {
+         setIsLoading(true)
          let imageService = new ImageService();
          let formData = new FormData();
          formData.append("file", photoFile);
@@ -19,12 +19,12 @@ function UserAddPhoto(props) {
          // toast.success(addedUserId);
          imageService.upload(formData).then(res => {
             toast.success(res.data.message);
-            setIsLoading(false);
             props.setstep('resume')
-         });
+         }).catch(err => {
+            toast.error(err)
+         }).finally(() => setIsLoading(false))
       } else {
-         toast("Bir sorun oluştu");
-         setIsLoading(false)
+         toast("Please choose a photo");
       }
    }
 

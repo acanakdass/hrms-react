@@ -51,7 +51,6 @@ function JobAdvertList() {
 
    const applyToAdvert = (advertId) => {
       applicationService.add(advertId, currentUserId).then(res => {
-         console.log(res);
          if (res.data.success) {
             toast.success(res.data.message);
          } else {

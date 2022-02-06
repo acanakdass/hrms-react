@@ -16,9 +16,7 @@ function CandidateDetail() {
    useEffect(() => {
       let candidateService = new CandidateService();
       candidateService.getById(id).then(res => setCandidate(res.data.data));
-      setTimeout(() => {
-         console.log(candidate)
-      }, 2000)
+
    }, [])
    return (
       <div style={{ margin: '2em' }}>

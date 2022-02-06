@@ -20,6 +20,7 @@ import AddJobAdvertisement from '../pages/Superadmin/AddJobAdvertisement';
 import EmployerRegister from '../pages/EmployerRegister';
 import MyJobAdvertsList from '../components/Employer/MyJobAdvertsList';
 import AppliedCandidatesList from '../components/Employer/AppliedCandidatesList';
+import CandidateAddResume from '../components/Candidate/CandidateAddResume/CandidateAddResume';
 
 function Dashboard() {
    return (
@@ -35,6 +36,9 @@ function Dashboard() {
                   <Route exact path="/candidates" component={CandidateList} />
                   <Route exact path="/candidates/:id" component={CandidateDetail} />
                   <Route exact path="/candidate/favourites" component={FavouriteCandidates} />
+
+                  <Route exact path="/candidate/resume/edit/:id" component={CandidateAddResume} />
+
                   <Route exact path="/jobAdverts/favourites" component={FavoriteAdverts} />
                   <Route exact path="/jobadverts" component={JobAdvertList} />
                   <Route exact path="/candidate/register" component={CandidateRegister} />
